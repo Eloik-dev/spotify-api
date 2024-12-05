@@ -1,0 +1,53 @@
+[
+    {
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Rock",
+        "musiques": [
+            {
+                "nom": "Numb",
+                "lien": "https://www.youtube.com/watch?v=kXYiU_JCYtU",
+                "artistes": [
+                    "Linkin Park"
+                ],
+                "likes": 100000,
+                "dislikes": 5,
+                "archive": false,
+                "datePublication": "2007-03-05"
+            }
+        ]
+    },
+    {
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Jazz",
+        "musiques": [
+            {
+                "nom": "So What",
+                "lien": "https://www.youtube.com/watch?v=zqNTltOGh5c",
+                "artistes": [
+                    "Miles Davis"
+                ],
+                "likes": 50000,
+                "dislikes": 2,
+                "archive": false,
+                "datePublication": "2010-10-19"
+            }
+        ]
+    },
+    {
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Classique",
+        "musiques": [
+            {
+                "nom": "Fur Elise",
+                "lien": "https://www.youtube.com/watch?v=wfF0zHeU3Zs",
+                "artistes": [
+                    "Beethoven"
+                ],
+                "likes": 80000,
+                "dislikes": 1,
+                "archive": false,
+                "datePublication": "2018-05-21"
+            }
+        ]
+    }
+]

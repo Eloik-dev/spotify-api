@@ -14,7 +14,7 @@ import EnvVars from '@src/common/EnvVars';
 import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/classes';
 import { NodeEnvs } from '@src/common/misc';
-
+import { firebaseAuthentication } from './firebase/authentificationFirebase';
 
 const app = express();
 
@@ -32,6 +32,9 @@ if (EnvVars.NodeEnv === NodeEnvs.Dev.valueOf()) {
 if (EnvVars.NodeEnv === NodeEnvs.Production.valueOf()) {
   app.use(helmet());
 }
+
+// Middleware authentification
+app.use(firebaseAuthentication);
 
 // Add APIs, must be after middleware
 app.use(Paths.Base, BaseRouter);
