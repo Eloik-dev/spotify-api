@@ -8,8 +8,8 @@ admin.initializeApp({
 });
 
 // Extend the Request interface to include the uid property 
-export interface FirebaseRequest extends Request { 
-    uid?: string; 
+export interface FirebaseRequest extends Request {
+    uid?: string;
 }
 
 export const firebaseAuthentication = async (
@@ -27,7 +27,7 @@ export const firebaseAuthentication = async (
             .verifyIdToken(idToken)
             .then(function (decodedToken) {
                 console.log('decodedToken:', decodedToken);
-                req.uid = decodedToken.uid; console.log('Authenticated user uid:', req.uid);
+                req.uid = decodedToken.uid;
                 next();
             })
             .catch(function (error) {
@@ -36,7 +36,7 @@ export const firebaseAuthentication = async (
                     status: 403,
                     error: error,
                 };
-                res.sendStatus(403).send(errorMessage);
+                res.status(403).send(errorMessage);
                 res.end();
             });
     } else {

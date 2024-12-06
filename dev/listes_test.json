@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "67525362d0cdfaea1851f84a",
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Rock",
+        "musiques": ["67525362d0cdfaea1851f84b"]
+    },
+    {
+        "_id": "67525362d0cdfaea1851f84c",
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Jazz",
+        "musiques": ["67525362d0cdfaea1851f84d"]
+    },
+    {
+        "_id": "67525362d0cdfaea1851f84e",
+        "utilisateur_uid": "KUxm7Tqkx5h3pgYKyFQZUkACKPn2",
+        "nom": "Musique Classique",
+        "musiques": ["67525362d0cdfaea1851f84f"]
+    }
+]

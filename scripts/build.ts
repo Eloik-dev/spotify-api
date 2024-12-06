@@ -12,9 +12,9 @@ import childProcess from 'child_process';
     await remove('./dist/');
     await exec('npm run lint', './');
     await exec('tsc --build tsconfig.prod.json', './');
-    // Copy
-    await copy('./src/public', './dist/public');
-    await copy('./src/views', './dist/views');
+    
+    // Copy firebase.json to dist
+    await copy('./src/firebase/firebase.json', './dist/firebase/firebase.json');
   } catch (err) {
     logger.err(err);
     // eslint-disable-next-line n/no-process-exit

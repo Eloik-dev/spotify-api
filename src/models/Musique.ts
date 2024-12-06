@@ -18,7 +18,7 @@ const MusiqueSchema = new Schema({
     artistes: {
         type: [String],
         validate: {
-            validator: function (v: String) {
+            validator: function (v: String[]) {
                 return v.length > 0;
             },
             message: 'Il doit y avoir au moins un artiste.'
@@ -44,6 +44,6 @@ const MusiqueSchema = new Schema({
 
 export type MusiqueType = mongoose.InferSchemaType<typeof MusiqueSchema>;
 
-export const MusiquesModel = mongoose.model('musiques', MusiqueSchema);
+export const MusiquesModel = mongoose.model('Musiques', MusiqueSchema);
 
 export default MusiqueSchema;

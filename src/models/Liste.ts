@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
-import MusiqueSchema from './Musique';
 const Schema = mongoose.Schema;
 
 // Schéma pour Liste
 const ListeSchema = new Schema({
     _id: { type: String },
-    utilisateur_id: {
+    utilisateur_uid: {
         type: String,
         validate: {
             validator: function (v: String) {
@@ -20,19 +19,11 @@ const ListeSchema = new Schema({
         minlength: [1, 'Le nom de la liste doit avoir au moins 1 caractère.'],
         maxlength: [100, 'Le nom de la liste ne peut pas dépasser 100 caractères.']
     },
-    musiques: {
-        type: [MusiqueSchema],
-        validate: {
-            validator: function (v: Array<typeof MusiqueSchema>) {
-                return v.length > 0;
-            },
-            message: 'Il doit y avoir au moins une musique dans la liste.'
-        }
-    }
+    musiques: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Musiques' }]
 });
 
 export type ListeType = mongoose.InferSchemaType<typeof ListeSchema>;
 
-export const ListeModel = mongoose.model('musiques', ListeSchema);
+export const ListeModel = mongoose.model('Listes', ListeSchema);
 
 export default ListeSchema;

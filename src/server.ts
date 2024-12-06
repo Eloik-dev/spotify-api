@@ -15,8 +15,12 @@ import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/classes';
 import { NodeEnvs } from '@src/common/misc';
 import { firebaseAuthentication } from './firebase/authentificationFirebase';
+import cors from 'cors';
 
 const app = express();
+
+// CORS pour les requêtes locales
+app.use(cors())
 
 // Basic middleware
 app.use(express.json());
@@ -58,10 +62,6 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
 // Set views directory (html)
 const viewsDir = path.join(__dirname, 'views');
 app.set('views', viewsDir);
-
-// Set static directory (js and css).
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
 
 // Nav to users pg by default
 app.get('/', (_: Request, res: Response) => {

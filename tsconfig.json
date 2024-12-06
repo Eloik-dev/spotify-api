@@ -81,7 +81,4 @@
     "scripts",
     "preload.js"
   ],
-  "exclude": [
-    "src/public/*"
-  ]
 }

@@ -4,8 +4,11 @@ import EnvVars from '@src/common/EnvVars';
 import server from './server';
 import { connect } from 'mongoose';
 
-
-// **** Run **** //
+/**
+ * Enregistrer les modèles pour éviter des problèmes
+ */
+require('./models/Musique');
+require('./models/Liste');
 
 const SERVER_START_MSG = ('Express server started on port: ' +
   EnvVars.Port.toString());
