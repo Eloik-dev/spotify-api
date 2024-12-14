@@ -20,7 +20,9 @@ import cors from 'cors';
 const app = express();
 
 // CORS pour les requêtes locales
-app.use(cors())
+app.use(cors({
+  origin: '*',
+}));
 
 // Basic middleware
 app.use(express.json());
