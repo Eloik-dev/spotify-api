@@ -11,7 +11,6 @@ export default class ListeService {
      */
     static async getAll(req: FirebaseRequest, res: Response) {
         const listes = await (new ListeRepo).getAllByUser(req.uid);
-        console.log(listes)
         res.status(HttpStatusCodes.OK).json(listes);
     }
 
@@ -20,7 +19,7 @@ export default class ListeService {
      */
     static async get(req: FirebaseRequest, res: Response) {
         const liste_id = req.params.id;
-        const liste = await (new ListeRepo).getOne(req.uid, liste_id);
+        const liste = await (new ListeRepo).getOne(liste_id);
 
         res.status(HttpStatusCodes.OK).json(liste);
     }

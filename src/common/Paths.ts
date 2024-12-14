@@ -15,8 +15,8 @@ export default {
   },
   Musiques: {
     Base: '/musiques',
-    Search: '/search/:id',
-    Add: '/add',
+    Search: '/search',
+    Create: '/Create',
     Update: '/update',
     Delete: '/delete/:id',
   },

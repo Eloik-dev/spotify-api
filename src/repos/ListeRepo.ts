@@ -7,15 +7,13 @@ export default class ListeRepo extends BaseRepo<ListeType> {
     model: Model<ListeType> = ListeModel;
 
     /**
-     * Retourne une liste associée à un utilisateur
+     * Retourne une liste
      *
-     * @param {string} utilisateur_uid Le uid de l'utilisateur
      * @param {string} id Le id de la liste à retrouver
      */
-    getOne(utilisateur_uid?: string, id?: string) {
+    getOne(id?: string) {
         return this.model.findOne({
             _id: id,
-            utilisateur_uid,
         }).populate<{ musiques: MusiqueType[] }>('musiques');
     }
 
@@ -37,10 +35,16 @@ export default class ListeRepo extends BaseRepo<ListeType> {
      * @param {string} recherche La valeur à rechercher dans le nom
      */
     findBySearch(utilisateur_uid?: string, recherche?: string) {
-        const query: any = {};
-        query.utilisateur_uid = utilisateur_uid;
-        query.$text = { $search: recherche };
-        return this.model.find(query);
+        return this.model.aggregate([
+            {
+                $match: {
+                    utilisateur_uid,
+                    nom: {
+                        $regex: recherche, $options: 'i'
+                    }
+                }
+            }
+        ]);
     }
 
     /**
@@ -49,7 +53,6 @@ export default class ListeRepo extends BaseRepo<ListeType> {
      * @param {ListeType} liste La liste à ajouter
      */
     insert(liste?: ListeType) {
-        console.log(liste)
         const id = new mongoose.Types.ObjectId();
         liste!._id = id.toString();
         return this.model.create(liste);

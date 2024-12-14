@@ -13,11 +13,12 @@ const MusiqueSchema = new Schema({
     lien: {
         type: String,
         required: [true, 'Le lien de la musique est requis.'],
-        match: [/^https?:\/\/.*\.(?:mp3|mp4|youtube\.com\/watch\?v=)/, 'Le lien doit être une URL valide.']
+        match: [/^https?:\/\/.*\.(?:mp3|mp4|youtube\.com\/watch\?v=)/, 'Le lien doit être une URL YouTube valide.']
     },
     artistes: {
         type: [String],
         validate: {
+
             validator: function (v: String[]) {
                 return v.length > 0;
             },

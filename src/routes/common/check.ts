@@ -1,8 +1,6 @@
 import { ValidationErr } from '@src/common/classes';
 
-
 type TReqObj = Record<string, unknown>;
-
 
 /**
  * Check that param/s is a string
@@ -40,7 +38,7 @@ function isNum(
 }
 
 /**
- * Check validator for string
+ * Check validator for number
  */
 function _checkNum(val: unknown): number | undefined {
   const valF = Number(val);
@@ -52,7 +50,7 @@ function _checkNum(val: unknown): number | undefined {
 }
 
 /**
- * Check that param/s is a number
+ * Check that param/s is a boolean.
  */
 function isBool(reqObj: TReqObj, params: string): boolean;
 function isBool(reqObj: TReqObj, params: readonly string[]): boolean[];
@@ -64,7 +62,7 @@ function isBool(
 }
 
 /**
- * Check validator for string
+ * Check validator for boolean
  */
 function _checkBool(val: unknown): boolean | undefined {
   if (typeof val === 'boolean') {
@@ -78,6 +76,53 @@ function _checkBool(val: unknown): boolean | undefined {
     } else {
       return undefined;
     }
+  } else {
+    return undefined;
+  }
+}
+
+/**
+ * Check that param is an array.
+ */
+function isArr(reqObj: TReqObj, params: string): any[];
+function isArr(reqObj: TReqObj, params: readonly string[]): any[][];
+function isArr(
+  reqObj: TReqObj,
+  params: string | readonly string[],
+): any[] | any[][] {
+  return _checkWrapper(reqObj, params, _checkArr);
+}
+
+/**
+ * Check validator for array
+ */
+function _checkArr(val: unknown): any[] | undefined {
+  if (Array.isArray(val)) {
+    return val;
+  } else {
+    return undefined;
+  }
+}
+
+/**
+ * Check that param is a date.
+ */
+function isDate(reqObj: TReqObj, params: string): Date;
+function isDate(reqObj: TReqObj, params: readonly string[]): Date[];
+function isDate(
+  reqObj: TReqObj,
+  params: string | readonly string[],
+): Date | Date[] {
+  return _checkWrapper(reqObj, params, _checkDate);
+}
+
+/**
+ * Check validator for date
+ */
+function _checkDate(val: unknown): Date | undefined {
+  const date = new Date(val as string);
+  if (!isNaN(date.getTime())) {
+    return date;
   } else {
     return undefined;
   }
@@ -98,7 +143,6 @@ function isValid<T>(
     throw new ValidationErr(param);
   }
 }
-
 
 // **** Shared Helpers **** //
 
@@ -132,12 +176,13 @@ function _checkWrapper<T>(
   throw new ValidationErr(params);
 }
 
-
 // **** Export Default **** //
 
 export default {
   isStr,
   isNum,
   isBool,
+  isArr,
+  isDate,
   isValid,
 } as const;

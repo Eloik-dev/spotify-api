@@ -22,7 +22,16 @@ const ListeSchema = new Schema({
     musiques: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Musiques' }]
 });
 
-export type ListeType = mongoose.InferSchemaType<typeof ListeSchema>;
+// Define an interface that includes the musiques field
+export interface ListeDocument extends Document {
+    _id: string;
+    utilisateur_uid: string;
+    nom: string;
+    musiques: mongoose.Types.ObjectId[];
+}
+
+
+export type ListeType = mongoose.InferSchemaType<typeof ListeSchema>
 
 export const ListeModel = mongoose.model('Listes', ListeSchema);
 
